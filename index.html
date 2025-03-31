@@ -20,18 +20,21 @@
     </div>
 </body>
 <script>
+    //Root
     const passwordBox = document.getElementById("password");
     const tamanho = 10;
     const temp = document.getElementById("temp");
     const fraseSumir = document.getElementById("fraseSumir");
     const gerarSenhaBtn = document.querySelector("button"); // Seleciona o botão de gerar senha
 
+    //Caracteres e soma senha
     const letrasGrandes = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
     const letrasPequenas = "abcdefghijklmnopqrstuvxwyz";
     const caracteres = "!@#$%¨&*(+=";
     const numeros = "0123456789";
     const todosCaracters = letrasGrandes + letrasPequenas + caracteres + numeros;
 
+    //Função da senha
     function criaçãoSenha() {
         let senha = "";
         senha += letrasGrandes[Math.floor(Math.random() * letrasGrandes.length)];
@@ -39,8 +42,8 @@
         senha += caracteres[Math.floor(Math.random() * caracteres.length)];
         senha += numeros[Math.floor(Math.random() * numeros.length)];
 
-        while (tamanho > senha.length) { // Corrigido: removido o parêntese extra
-            senha += todosCaracters[Math.floor(Math.random() * todosCaracters.length)];
+        while (tamanho > senha.length) {   
+            senha += todosCaracters[Math.floor(Math.random() * todosCaracters.length)]; //Math.floor (arredonda numeros inteiros) Math.random()escolha aleatoria. 
         }
         passwordBox.value = senha;
         console.log(senha);
@@ -66,6 +69,8 @@
         }, 12000);
     }
 
+
+    //Função do botao da senha
     function copyPassword() {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(passwordBox.value);
@@ -75,41 +80,6 @@
         }
     }
 
-    // const passwordBox = document.getElementById("password");
-    // const tamanho = 10;
-
-    // const upperCase = "ABCDEFGHIJKLMNOPQRSRTUVWXYZ";
-    // const lowerCase = "abcdefghijklomnopqrstuvxwyz";
-    // const numbers = "0123456789";
-    // const symbols = "@#$%¨&*(-_+=";
-
-    // const allChars = upperCase + lowerCase + numbers + symbols;
-
-    // function creatPassword(){
-    //     let password = "";
-    //     password += upperCase[Math.floor(Math.random() * upperCase.length)];
-    //     password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
-    //     password += numbers[Math.floor(Math.random() * numbers.length)];
-    //     password += symbols[Math.floor(Math.random() * symbols.length)];
-
-    //     while(tamanho > password.length) {
-    //         password += allChars[Math.floor(Math.random() * allChars.length)];
-    //     }
-    //     passwordBox.value = password;
-    //     console.log(password);
-
-
-    //      setTimeout(function(){                
-    //             password = "";
-    //             passwordBox.value = "";
-                 
-    //         }, 10000);
-    // }
-
-    // function copyPassword(){
-    //     passwordBox.select();
-    //     document.execCommand("copy");
-    // }
 
 </script>
 </html>

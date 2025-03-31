@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate a <br> <span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="Password">
+            <img src="rpg_img/images/copy.png" alt="" onclick="copyPassword()">
+        </div>
+        <div class="containerBtn">
+            <button onclick="criaçãoSenha()"> <img src="rpg_img/images/generate.png">Generate Password</button>
+            <p id="fraseSumir" style="display: none;">A senha sumira em <span id="temp"></span></p>
+        </div>
+    </div>
+</body>
+<script>
+    const passwordBox = document.getElementById("password");
+    const tamanho = 10;
+    const temp = document.getElementById("temp");
+    const fraseSumir = document.getElementById("fraseSumir");
+    const gerarSenhaBtn = document.querySelector("button"); // Seleciona o botão de gerar senha
+
+    const letrasGrandes = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
+    const letrasPequenas = "abcdefghijklmnopqrstuvxwyz";
+    const caracteres = "!@#$%¨&*(+=";
+    const numeros = "0123456789";
+    const todosCaracters = letrasGrandes + letrasPequenas + caracteres + numeros;
+
+    function criaçãoSenha() {
+        let senha = "";
+        senha += letrasGrandes[Math.floor(Math.random() * letrasGrandes.length)];
+        senha += letrasPequenas[Math.floor(Math.random() * letrasPequenas.length)];
+        senha += caracteres[Math.floor(Math.random() * caracteres.length)];
+        senha += numeros[Math.floor(Math.random() * numeros.length)];
+
+        while (tamanho > senha.length) { // Corrigido: removido o parêntese extra
+            senha += todosCaracters[Math.floor(Math.random() * todosCaracters.length)];
+        }
+        passwordBox.value = senha;
+        console.log(senha);
+
+        let contador = 10;
+        fraseSumir.style.display = "inline";
+        temp.style.display = "inline";
+
+        function atualizarContagem() {
+            temp.textContent = contador;
+            contador--;
+
+            if (contador < 0) {
+                clearInterval(intervalo);
+            }
+        }
+        const intervalo = setInterval(atualizarContagem, 1000);
+
+        setTimeout(function () {
+            fraseSumir.style.display = "none";
+            temp.style.display = "none";
+            passwordBox.value = "";
+        }, 12000);
+    }
+
+    function copyPassword() {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(passwordBox.value);
+        } else {
+            passwordBox.select();
+            document.execCommand("copy"); // Fallback para navegadores antigos
+        }
+    }
+
+    // const passwordBox = document.getElementById("password");
+    // const tamanho = 10;
+
+    // const upperCase = "ABCDEFGHIJKLMNOPQRSRTUVWXYZ";
+    // const lowerCase = "abcdefghijklomnopqrstuvxwyz";
+    // const numbers = "0123456789";
+    // const symbols = "@#$%¨&*(-_+=";
+
+    // const allChars = upperCase + lowerCase + numbers + symbols;
+
+    // function creatPassword(){
+    //     let password = "";
+    //     password += upperCase[Math.floor(Math.random() * upperCase.length)];
+    //     password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+    //     password += numbers[Math.floor(Math.random() * numbers.length)];
+    //     password += symbols[Math.floor(Math.random() * symbols.length)];
+
+    //     while(tamanho > password.length) {
+    //         password += allChars[Math.floor(Math.random() * allChars.length)];
+    //     }
+    //     passwordBox.value = password;
+    //     console.log(password);
+
+
+    //      setTimeout(function(){                
+    //             password = "";
+    //             passwordBox.value = "";
+                 
+    //         }, 10000);
+    // }
+
+    // function copyPassword(){
+    //     passwordBox.select();
+    //     document.execCommand("copy");
+    // }
+
+</script>
+</html>
+
+

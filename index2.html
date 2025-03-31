@@ -1,0 +1,66 @@
+
+"<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div id="meuElemento" style="display: none;">
+    Este texto está oculto.
+  </div>
+
+  <script>
+   const elemento = document.getElementById("meuElemento");
+
+if (window.getComputedStyle(elemento).display === "none") {
+  console.log("O elemento está oculto.");
+  console.log(elemento.textContent); // Use textContent aqui
+} else {
+  console.log(elemento.innerText);
+}
+  </script>
+  </body>
+  </html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Contagem Regressiva</title>
+<style>
+    #contagem {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="contagem">10</div>
+
+<script >
+
+
+let contador = 10;
+const elementoContagem = document.getElementById("contagem");
+
+function atualizarContagem() {
+  elementoContagem.textContent = contador;
+  contador--;
+
+  if (contador < 0) {
+    clearInterval(intervalo); // Para a contagem quando chegar a 0
+    elementoContagem.textContent = "Tempo esgotado!"; // Exibe mensagem final
+  }
+}
+
+atualizarContagem(); // Exibe o valor inicial
+const intervalo = setInterval(atualizarContagem, 1000); // Atualiza a cada segundo
+</script>
+</body>
+</html> -->
